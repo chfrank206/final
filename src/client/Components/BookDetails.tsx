@@ -17,6 +17,16 @@ const BookDetails: React.SFC<BookDetailsProps> = props => {
         .then(book => setBook(book))
     }, []);
 
+    const handleDelete = async () => {
+        let id = props.match.params.id;
+        try {
+            await json(`/api/books/${id}`, 'DELETE')
+            props.history.push('/books');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <>
             <section className="row">
@@ -25,6 +35,8 @@ const BookDetails: React.SFC<BookDetailsProps> = props => {
                     <p>By: {book.author}</p>
                     <p>Genre: {book.name}</p>
                     <p>price: ${book.price}</p>
+                    <button className="btn" onClick={() => handleDelete()}>Delete Book</button>
+                    
                 </article>
             </section>
         </>
