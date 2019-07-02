@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router';
-import { json } from '../utils/api';
+import { json, User } from '../utils/api';
 
 
 export interface UpdateBookProps extends RouteComponentProps<{ id: string }> {
@@ -52,6 +52,12 @@ const UpdateBook: React.SFC<UpdateBookProps> = props => {
 
     useEffect(() => {
         getCategories();
+    }, []);
+
+    useEffect(() => {
+        if(!User || User.userid === null || User.role !== 'admin') {
+            props.history.replace('/auth/login');
+        }
     }, []);
 
     return (

@@ -3,13 +3,13 @@ import db from '../db';
 
 let router = Router();
 
-// const isAdmin: RequestHandler = (req, res, next) => {
-//     if (!req.user || req.user.role !== 'admin') {
-//         res.sendStatus(401);
-//     } else {
-//         return next();
-//     }
-// }
+const isAdmin: RequestHandler = (req, res, next) => {
+    if (!req.user || req.user.role !== 'admin') {
+        res.sendStatus(401);
+    } else {
+        return next();
+    }
+}
 
 router.get('/:id?', async (req, res) => {
     let id = req.params.id;
@@ -22,7 +22,7 @@ router.get('/:id?', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', isAdmin, async (req, res) => {
     try {
         let categoryid = req.body.categoryid;
         let author = req.body.author;
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', isAdmin, async (req, res) => {
     try {
         let r = await db.books.deleteBook(req.params.id);
         res.json(r);
@@ -44,7 +44,7 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', isAdmin, async (req, res) => {
     try {
         let author = req.body.author;
         let title = req.body.title;
