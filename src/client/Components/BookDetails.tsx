@@ -35,8 +35,8 @@ const BookDetails: React.SFC<BookDetailsProps> = props => {
                     <p>By: {book.author}</p>
                     <p>Genre: {book.name}</p>
                     <p>price: ${book.price}</p>
-                    <button className="btn" onClick={() => handleDelete()}>Delete Book</button>
-                    
+                    <button onClick={() => handleDelete()}>Delete Book</button>
+                    <Link to={`/${book.id}/update`}>Update Book</Link>
                 </article>
             </section>
         </>

@@ -12,7 +12,7 @@ const getBookCategory = (id: number) => Query(`select Books.*, Categories.name f
 
 const deleteBook = (id: number) => Query(`delete from Books where id = ?`, [id]);
 
-const updateBook = (author: string, title: string, price: string, categoryid: number, id: number) => Query(`update Books set autor= "${author}", title ="${title}", price = "${price}", categoryid = ${categoryid} where id = '${id}'`);
+const updateBook = (author: string, title: string, price: string, categoryid: number, id: number) => Query(`update Books set author= "${author}", title ="${title}", price = "${price}", categoryid = ${categoryid} where id = '${id}'`);
 
 export default {
     getAll,
