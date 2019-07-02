@@ -27,6 +27,7 @@ const AllBooks: React.SFC<AllBooksProps> = () => {
                             </li>
                         ))}
                     </ul>
+                    <Link to={'/newBook'}>New Book</Link>
                 </article>
             </section>
         </>
