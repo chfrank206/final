@@ -6,7 +6,7 @@ export let User: any = {
     role: localStorage.getItem('role') || null
 };
 
-export const json = async <T = any>(uri: string, method: string, body?: {}) => {
+export const json = async <T = any>(uri: string, method?: string, body?: {}) => {
 
     let headers: any = {
         'Content-type': 'application/json'
